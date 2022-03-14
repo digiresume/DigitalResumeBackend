@@ -45,9 +45,8 @@ exports.login = async (req, res, next) => {
     }
     try {
         const user = await User.findOne({ username }).select("+pwd");
-        console.log(user)
-        id = user._id
-        console.log(id)
+        const id = user._id;
+        const IsAdmin = user.isadmin
 
         if (!user) {
             return next(new ErrorResponse("Invalid Credentials", 401));
@@ -58,8 +57,7 @@ exports.login = async (req, res, next) => {
         if (!isMatch) {
             return next(new ErrorResponse("Invalid Credentials", 401))
         }
-
-        sendToken(user, 200, res, id);
+        sendToken(user, 200, res, id, IsAdmin);
     } catch (error) {
         next(error)
     }
@@ -149,10 +147,10 @@ exports.resetpassword = async (req, res, next) => {
 };
 
 // user indicate data in model each user is a user
-const sendToken = (user, statusCode, res, id) => {
+const sendToken = (user, statusCode, res, id, IsAdmin) => {
     const token = user.getSignedToken();
 
-    res.status(statusCode).json({ success: true, token })
+    res.status(statusCode).json({ success: true, token, id, IsAdmin })
 }
 
 exports.deleteuser = async (req, res, next) => {

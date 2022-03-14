@@ -8,7 +8,7 @@ router.route("/resume/:templateNum").post(userdetail);
 // router.route("/admin").get(admin);
 router.route("/admin").get(user);
 router.route("/comments").post(comments);
-router.route("/admin/:name").get(viewprofile);
+router.route("/admin/:name").post(viewprofile);
 
 
 module.exports = router;

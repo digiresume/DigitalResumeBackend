@@ -69,7 +69,7 @@ exports.viewprofile = async (req, res, next) => {
     // console.log(username)
     try {
         const username = req.params.name;
-        UserdetailInfo.findOne({ name: username }, function (err, user) {
+        UserdetailInfo.findOne({ firstname: username }, function (err, user) {
             if (err) {
                 res.send("Something went wrong in user detail")
             }

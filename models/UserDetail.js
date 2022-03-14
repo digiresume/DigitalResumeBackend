@@ -29,7 +29,7 @@ const userDetailSchema = new mongoose.Schema({
     fdcompany: String,
     fdduration: String,
     fddescription: String,
-    skill: Array,
+    skill: [{ skill: String }],
     date: Array,
     certificationTitle: Array,
     authorityOfCertification: Array,

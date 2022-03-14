@@ -22,7 +22,7 @@ exports.userdetail = async (req, res, next) => {
             achievementsX, skill, date, certificationTitle, authorityOfCertification, title, description
         });
         console.log(user);
-        res.json(user)
+        res.json('Data Saved Successfully!!!')
 
     } catch (error) {
         next(error);
@@ -81,6 +81,29 @@ exports.viewprofile = async (req, res, next) => {
     }
 
 };
+
+exports.deleteuser = async (req, res, next) => {
+
+
+    try {
+        const userName = req.params.username;
+        console.log(userName)
+        const filter = { firstname: userName };
+        UserdetailInfo.findOneAndDelete(filter, (err) => {
+            if (err) {
+                console.log(err)
+            }
+            console.log("One data deleted")
+            res.json('User Deleted');
+        })
+
+
+    } catch (error) {
+        next(error);
+    }
+};
+
+
 
 exports.comments = async (req, res) => {
     const commentnew = {

@@ -8,6 +8,6 @@ router.route("/login").post(login);
 router.route("/forgotpassword").post(forgotpassword);
 router.route("/resetpassword/:resetToken").put(resetpassword);
 router.route("/admin/adduser").post(adduser);
-router.route("/admin/:username/deleteuser").post(deleteuser);
+// router.route("/admin/:username/deleteuser").post(deleteuser);
 
 module.exports = router;

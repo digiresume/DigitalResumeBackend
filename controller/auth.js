@@ -153,25 +153,7 @@ const sendToken = (user, statusCode, res, id, IsAdmin) => {
     res.status(statusCode).json({ success: true, token, id, IsAdmin })
 }
 
-exports.deleteuser = async (req, res, next) => {
 
-
-    try {
-        const userName = req.params.username;
-        console.log(userName)
-        const filter = { username: userName };
-        User.findOneAndDelete(filter, (err) => {
-            if (err) {
-                console.log(err)
-            }
-            console.log("One data deleted")
-        })
-
-
-    } catch (error) {
-        next(error);
-    }
-};
 
 
 // Admin Add User

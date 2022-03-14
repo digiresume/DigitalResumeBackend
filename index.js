@@ -15,9 +15,9 @@ app.use(express.json());
 
 app.use(express.static(__dirname + '/public'));
 
-app.get("/", (req, res, next) => {
-  res.send("Api running");
-});
+// app.get("/", (req, res, next) => {
+//   res.send("Api running");
+// });
 
 
 // A url with route /api/auth it will go the file auth file in routes

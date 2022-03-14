@@ -4,6 +4,8 @@ const res = require('express/lib/response');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/error');
 
+
+
 // connect db
 connectDB();
 
@@ -36,4 +38,14 @@ const server = app.listen(PORT, () => console.log(`Server running on the port ${
 process.on("unhandledRejection", (err, promise) => {
   console.log(`Logged Error:${err.message}`);
   server.close(() => process.exit(1));
+});
+
+const path = require('path');
+
+app.use(express.static('./build'));
+
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname +
+    '/build/index.html'));
 });

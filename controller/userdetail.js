@@ -89,7 +89,7 @@ exports.deleteuser = async (req, res, next) => {
         const userName = req.params.username;
         console.log(userName)
         const filter = { firstname: userName };
-        await UserdetailInfo.findOneAndDelete(filter, (err) => {
+        UserdetailInfo.findOneAndDelete(filter, (err) => {
             if (err) {
                 console.log(err)
             }

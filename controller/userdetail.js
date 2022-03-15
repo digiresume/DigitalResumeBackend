@@ -81,6 +81,7 @@ exports.viewprofile = async (req, res, next) => {
     }
 
 };
+//delete user
 
 exports.deleteuser = async (req, res, next) => {
 
@@ -89,6 +90,7 @@ exports.deleteuser = async (req, res, next) => {
         const userName = req.params.username;
         console.log(userName)
         const filter = { firstname: userName };
+        console.log(filter)
         UserdetailInfo.findOneAndDelete(filter, (err) => {
             if (err) {
                 console.log(err)
@@ -115,5 +117,23 @@ exports.comments = async (req, res) => {
     newcomment.save().then(data => {
         res.json(data);
     })
+
+};
+
+
+exports.feedback = async (req, res, next) => {
+    // Only shows the recent comments within 1 day
+    try {
+        CommentInfo.find({ "date": { $lt: new Date(), $gt: new Date(new Date() - 24 * 60 * 60 * 1000) } }, function (err, users) {
+            if (err) {
+                res.send('something went really wrong!!')
+            }
+            console.log(users)
+            res.json(users)
+        })
+
+    } catch (error) {
+        next(error);
+    }
 
 };

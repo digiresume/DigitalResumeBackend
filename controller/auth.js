@@ -80,8 +80,8 @@ exports.forgotpassword = async (req, res, next) => {
         await user.save();
 
         // Mail Senting Part
-        const resetUrl = `http://localhost:3000/api/auth/resetpassword/${resetToken}`;
-
+        // const resetUrl = `http://localhost:5000/api/auth/resetpassword/${resetToken}`;
+        const resetUrl = `https://sleekcvs.herokuapp.com/api/auth/resetpassword/${resetToken}`;
         const message = `
         <h1>You have requested a password reset</h1>
         <p>Please go to this link to reset your password</p>
@@ -188,3 +188,5 @@ exports.adduser = async (req, res, next) => {
         next(error);
     }
 };
+
+
